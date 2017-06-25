@@ -85,4 +85,5 @@ app.post('/config',function(req,res){
 
 });
 app.listen(2000);
+
 console.log("server runing on 2000");
