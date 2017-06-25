@@ -9,7 +9,7 @@ var ObjectId = require('mongodb').ObjectID;
 var url = 'mongodb://trackserve:5gECLKeOXoJyP30GCQj7ZreoL3lBcuhlHZq0mFOynmXPUDcJKi4jJJmTkMQuwsq24v4alZaEwkuXi1JutIIugw==@trackserve.documents.azure.com:10255/?ssl=true&replicaSet=globaldb';
 app.use(express.static(__dirname + "/public"));
 app.use(body.json());
-
+var port = process.env.port || 1337;
 app.post('/cpu',function(req,res){
     console.log(req.body);
    // res.send(req.body);
@@ -84,6 +84,6 @@ app.post('/config',function(req,res){
  
 
 });
-app.listen(2000);
+app.listen(port);
 
 console.log("server runing on 2000");
