@@ -1,0 +1,50 @@
+<!DOCTYPE>
+<html ng-app="myapp">
+<head>
+    <title>This is my first app</title>
+    
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<body>
+    <div class="container">
+    <h1>This is a test app</h1>
+    
+    <table class="table" ng-controller="mycntrl">
+        <thead>
+            <!--<tr>
+                <th>Server Name</th>
+                <th>PS_HOME Location</th>
+                <th>DB Type</th>
+                <th>DB Username</th>
+                <th>DB Password</th>
+                <th>Domain Name</th>
+                <th>script location</th>
+                <th>log location</th></tr>-->
+        </thead>
+        <tr>
+     <td><input type="text" placeholder="Server_Name" ng-model="contact.servername"/></td>
+     <td><input type="text" placeholder="PS_HOME" ng-model="contact.PS_HOME"/></td>
+     <td><input type="text" placeholder="DB_TYPE" ng-model="contact.DB_Type"/></td></tr>
+    <tr> <td><input type="text" placeholder="DB_username" ng-model="contact.DB_Uname"/></td>
+     <td><input type="password" placeholder="DB_password" ng-model="contact.DB_Password"/></td>
+     <td><input type="text" placeholder="Script_location" ng-model="contact.DB_Sloc"/></td></tr><tr>
+     <td><input type="text" placeholder="Log_location" ng-model="contact.DB_Lloc"/></td>
+     <td><input type="text" placeholder="OS Type" ng-model="contact.os"/></td>
+<td><button class="btn btn-primary" ng-click="add_info()">Add Config</button></td>
+        </tr>
+        <tr ng-repeat="x in con">
+     <td>{{x.servername}}</td>
+     <td>{{x.PS_HOME}}</td>
+     <td>{{x.DB_Type}}</td>
+     <td>{{x.DB_Uname}}</td>
+     <td>{{x.DB_Password}}</td>
+     <td>{{x.DB_Sloc}}</td>
+<td>{{x.DB_Lloc}}</td>
+
+        </tr>
+        </table>
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="/controllers/controller.js"></script>
+    </body>
+    </html>
