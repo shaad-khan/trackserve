@@ -22,7 +22,7 @@
                 <th>log location</th></tr>-->
         </thead>
         <tr>
-     <td><input type="text" placeholder="Server_Name" ng-model="contact.servername"/></td>
+     <td><input type="text" placeholder="Server_Name or IP" ng-model="contact.servername"/></td>
      <td><input type="text" placeholder="PS_HOME" ng-model="contact.PS_HOME"/></td>
        <td><input type="text" placeholder="PS_APP_HOME" ng-model="contact.PS_APP_HOME"/></td>
        <td><input type="text" placeholder="Domain" ng-model="contact.Domain"/></td>
@@ -33,6 +33,14 @@
      <td><input type="text" placeholder="Script_location" ng-model="contact.DB_Sloc"/></td></tr><tr>
      <td><input type="text" placeholder="Log_location" ng-model="contact.DB_Lloc"/></td>
      <td><input type="text" placeholder="OS Type" ng-model="contact.os"/></td>
+     <td><input type="text" placeholder="WEBLOGICHOMEPATH" ng-model="contact.WEBLOGICHOMEPATH"/></td>
+     <td><input type="text" placeholder="WLPORTNO" ng-model="contact.WLPORTNO"/></td>
+     <td><input type="text" placeholder="WLCUSERNAME" ng-model="contact.WLCUSERNAME"/></td>
+     <td><input type="text" placeholder="IBDOMAIN" ng-model="contact.IBDOMAIN"/></td>
+     <td><input type="text" placeholder="HOSTNAME" ng-model="contact.HOSTNAME"/></td>
+     <td><input type="text" placeholder="MASTERSCHDL" ng-model="contact.MASTERSCHDL"/></td>
+      <td><input type="text" placeholder="MASTERSCHDL" ng-model="contact.MASTERSCHDL"/></td>
+      <td><input type="text" placeholder="GWPORTNO" ng-model="contact.GWPORTNO"/></td>
 <td><button class="btn btn-primary" ng-click="add_info()">Add Config</button></td>
         </tr>
         <tr ng-repeat="x in con">
