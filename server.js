@@ -31,6 +31,16 @@ var cursor =db.collection('config').find().toArray(function(err, docs)
 res.json(docs);
 
 });
+app.get('/config2',function(req,res){
+    //var per=[];
+    MongoClient.connect(url, function(err, db) {
+assert.equal(null, err);
+var cursor =db.collection('schedule').find().toArray(function(err, docs)
+{
+ assert.equal(err, null);
+res.json(docs);
+
+});
 //res.writeHead(200, { 'Content-Type': 'application/json'});
 //cursor.stream().pipe(JSONStream.stringify()).pipe(res);
 /*cursor.each(function(err, doc) {
@@ -76,6 +86,18 @@ app.post('/config',function(req,res){
     console.log(req.body);
  MongoClient.connect(url, function(err, db) {
      db.collection('config').insert(req.body,function(err, result) {
+    assert.equal(err, null);
+    console.log("Inserted a document into the config collection.");
+     }
+    )
+ });
+ 
+
+});
+app.post('/config2',function(req,res){
+    console.log(req.body);
+ MongoClient.connect(url, function(err, db) {
+     db.collection('schedule').insert(req.body,function(err, result) {
     assert.equal(err, null);
     console.log("Inserted a document into the config collection.");
      }
