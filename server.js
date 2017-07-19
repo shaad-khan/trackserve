@@ -108,6 +108,30 @@ app.post('/config2',function(req,res){
  
 
 });
+app.post('/coyote',function(req,res){
+   // console.log(req.body);
+    MongoClient.connect(url, function(err, db) {
+    for(var i = 0; i < req.body['Data']['dataTable'].length;i++)
+    {
+
+     db.collection('coyote').insert(req.body['Data']['dataTable'][i],function(err, result) {
+    assert.equal(err, null);
+    console.log("Inserted a document into the config collection.");
+     }
+    )
+    }
+ });
+    
+ /*MongoClient.connect(url, function(err, db) {
+     db.collection('coyote').insert(req.body['Data'],function(err, result) {
+    assert.equal(err, null);
+    console.log("Inserted a document into the config collection.");
+     }
+    )
+ });*/
+ 
+
+});
 app.listen(port);
 
 console.log("server runing on 2000");
