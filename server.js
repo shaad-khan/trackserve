@@ -121,6 +121,7 @@ app.post('/coyote',function(req,res){
     )
     }
  });
+ 
     
  /*MongoClient.connect(url, function(err, db) {
      db.collection('coyote').insert(req.body['Data'],function(err, result) {
@@ -132,6 +133,37 @@ app.post('/coyote',function(req,res){
  
 
 });
+app.get('/coyote/info',function(req,res){
+   // console.log(req.body);
+    /*MongoClient.connect(url, function(err, db) {
+    for(var i = 0; i < req.body['Data']['dataTable'].length;i++)
+    {
+
+     db.collection('coyote').insert(req.body['Data']['dataTable'][i],function(err, result) {
+    assert.equal(err, null);
+    console.log("Inserted a document into the config collection.");
+     }
+    )
+}*/
+
+var date = req.param('date');
+
+//res.send(user_id);
+ //console.log(req.query.color);
+   MongoClient.connect(url, function(err, db) {
+assert.equal(null, err);
+var cursor =db.collection('coyote').find({'Date':{ "$regex":date}}).toArray(function(err, docs)
+{
+ assert.equal(err, null);
+res.json(docs);
+
+});
+    });
+
+
+
+
+ });
 app.listen(port);
 
 console.log("server runing on 2000");
