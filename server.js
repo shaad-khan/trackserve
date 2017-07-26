@@ -9,7 +9,7 @@ var ObjectId = require('mongodb').ObjectID;
 var url = 'mongodb://trackserve:5gECLKeOXoJyP30GCQj7ZreoL3lBcuhlHZq0mFOynmXPUDcJKi4jJJmTkMQuwsq24v4alZaEwkuXi1JutIIugw==@trackserve.documents.azure.com:10255/?ssl=true&replicaSet=globaldb';
 app.use(express.static(__dirname + "/public"));
 app.use(body.json());
-var port = process.env.port || 1337;
+var port = process.env.port || 1331;
 app.post('/cpu',function(req,res){
     console.log(req.body);
    // res.send(req.body);
@@ -153,6 +153,51 @@ var date = req.param('date');
    MongoClient.connect(url, function(err, db) {
 assert.equal(null, err);
 var cursor =db.collection('coyote').find({'Date':{ "$regex":date}}).toArray(function(err, docs)
+{
+ assert.equal(err, null);
+res.json(docs);
+
+});
+    });
+
+
+
+
+ });
+
+
+ app.get('/coyote/vcinfo',function(req,res){
+   
+
+var datev = req.param('date');
+var query = {};
+query["$or"]=[];
+     var str='';
+ for(var i=0;i<5;i++)
+ {
+     if(datev!='')
+     {
+var date = new Date(datev);
+     }
+     else{
+       var date = new Date();  
+     }
+var last = new Date(date.getTime() - (i * 24 * 60 * 60 * 1000));
+var day =last.getDate();
+var month=last.getMonth()+1;
+var year=last.getFullYear();
+
+var d=([month,day,year].join("/"));
+query["$or"].push({'Date':{'$regex':d}});
+
+ }
+ 
+ //console.log("db.getCollection('coyote').find({$or:["+str+"]})");
+
+  MongoClient.connect(url, function(err, db) {
+      console.log(query);
+assert.equal(null, err);
+var cursor =db.collection('coyote').find(query).toArray(function(err, docs)
 {
  assert.equal(err, null);
 res.json(docs);
