@@ -147,7 +147,14 @@ app.get('/coyote/info',function(req,res){
 }*/
 
 var date = req.param('date');
+date=convert(date);
 
+function convert(str) {
+    var date = new Date(str),
+        mnth = date.getMonth()+1,
+        day  = date.getDate();
+    return [mnth, day,date.getFullYear()].join("/");
+}
 //res.send(user_id);
  //console.log(req.query.color);
    MongoClient.connect(url, function(err, db) {
@@ -188,6 +195,7 @@ var month=last.getMonth()+1;
 var year=last.getFullYear();
 
 var d=([month,day,year].join("/"));
+
 query["$or"].push({'Date':{'$regex':d}});
 
  }
