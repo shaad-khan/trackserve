@@ -105,7 +105,7 @@ app.post('/process',function(req,res){
      }
     )
  });
- 
+ response.end();
 
 });
 app.post('/config2',function(req,res){
