@@ -101,7 +101,7 @@ app.post('/process',function(req,res){
  MongoClient.connect(url, function(err, db) {
      db.collection('processmonitor').insert(req.body,function(err, result) {
     assert.equal(err, null);
-    console.log("Inserted a document into the config collection.");
+    //console.log("Inserted a document into the config collection.");
      }
     )
  });
