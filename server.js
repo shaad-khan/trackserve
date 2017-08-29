@@ -96,6 +96,18 @@ app.post('/config',function(req,res){
  
 
 });
+app.post('/process',function(req,res){
+    console.log(req.body);
+ MongoClient.connect(url, function(err, db) {
+     db.collection('processmonitor').insert(req.body,function(err, result) {
+    assert.equal(err, null);
+    console.log("Inserted a document into the config collection.");
+     }
+    )
+ });
+ 
+
+});
 app.post('/config2',function(req,res){
     console.log(req.body);
  MongoClient.connect(url, function(err, db) {
