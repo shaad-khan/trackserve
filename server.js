@@ -84,6 +84,19 @@ res.json(docs);
 });
     });
 });
+
+app.get('/cpu',function(req,res){
+    //var per=[];
+    MongoClient.connect(url, function(err, db) {
+assert.equal(null, err);
+var cursor =db.collection('CPU').find().toArray(function(err, docs)
+{
+ assert.equal(err, null);
+res.json(docs);
+
+});
+    });
+});
 app.post('/config',function(req,res){
     console.log(req.body);
  MongoClient.connect(url, function(err, db) {
@@ -101,7 +114,7 @@ app.post('/process',function(req,res){
  MongoClient.connect(url, function(err, db) {
      db.collection('processmonitor').insert(req.body,function(err, result) {
     assert.equal(err, null);
-    //console.log("Inserted a document into the config collection.");
+    //'console.log("Inserted a document into the config collection.");
      }
     )
  });
