@@ -249,7 +249,7 @@ console.log("value of x inside "+ global.x );
 
 if(global.x==0)
 {
-    db.collection('GeneralConfig').insert(req.body,function(err, result) {
+    db.collection('Appconfig').insert(req.body,function(err, result) {
     assert.equal(err, null);
     res.json(ob);
     res.end();
