@@ -121,6 +121,18 @@ app.post('/process',function(req,res){
  response.end();
 
 });
+app.post('/gpost',function(req,res){
+    console.log(req.body);
+ MongoClient.connect(url, function(err, db) {
+     db.collection('GeneralConfig').insert(req.body,function(err, result) {
+    assert.equal(err, null);
+    console.log("Inserted a document into the config collection.");
+     }
+    )
+ });
+ 
+
+});
 app.post('/config2',function(req,res){
     console.log(req.body);
  MongoClient.connect(url, function(err, db) {
@@ -131,7 +143,7 @@ app.post('/config2',function(req,res){
     )
  });
  
-
+response.end();
 });
 app.post('/coyote',function(req,res){
    // console.log(req.body);
