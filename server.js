@@ -288,6 +288,57 @@ else
  
 
 });
+
+app.post('/webpost',function(req,res){
+   
+global.x=0;
+  /*  collection.update(
+   {username:"Bob"},
+   {$set:{'longitude': '58.3', 'latitude': '0.3'}},
+   { upsert: true}
+)*/
+var ob={"status":true};
+var ob2={"status":false};
+ MongoClient.connect(url, function(err, db) {
+
+db.collection('Webconfig').find({'servername':req.body.servername,'domain':req.body.domain}).toArray(function(err, docs)
+{
+ assert.equal(err, null);
+//res.json(docs);
+global.x=docs.length;
+//x=1;
+//console.log("docs length "+docs.length);
+console.log("value of x inside "+ global.x );
+
+if(global.x==0)
+{
+    db.collection('Webconfig').insert(req.body,function(err, result) {
+    assert.equal(err, null);
+    res.json(ob);
+    res.end();
+     }
+    )
+}
+else
+{
+    res.json(ob2);
+    res.end();
+}
+
+ })
+
+
+
+
+
+
+})
+
+
+
+ 
+
+});
 app.post('/config2',function(req,res){
     console.log(req.body);
  MongoClient.connect(url, function(err, db) {
