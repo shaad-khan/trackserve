@@ -129,8 +129,8 @@ global.x=0;
    {$set:{'longitude': '58.3', 'latitude': '0.3'}},
    { upsert: true}
 )*/
-var ob={"status":1};
-var ob2={"status":0};
+var ob={"status":true};
+var ob2={"status":false};
  MongoClient.connect(url, function(err, db) {
 
 db.collection('GeneralConfig').find({'servername':req.body.servername}).toArray(function(err, docs)
