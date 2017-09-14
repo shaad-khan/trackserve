@@ -84,6 +84,18 @@ res.json(docs);
 });
     });
 });
+app.get('/appconfig',function(req,res){
+    //var per=[];
+    MongoClient.connect(url, function(err, db) {
+assert.equal(null, err);
+var cursor =db.collection('Appconfig').find().toArray(function(err, docs)
+{
+ assert.equal(err, null);
+res.json(docs);
+
+});
+    });
+});
 
 app.get('/cpu',function(req,res){
     //var per=[];
