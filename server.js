@@ -9,7 +9,7 @@ var ObjectId = require('mongodb').ObjectID;
 var url = 'mongodb://trackserve:5gECLKeOXoJyP30GCQj7ZreoL3lBcuhlHZq0mFOynmXPUDcJKi4jJJmTkMQuwsq24v4alZaEwkuXi1JutIIugw==@trackserve.documents.azure.com:10255/?ssl=true&replicaSet=globaldb';
 app.use(express.static(__dirname + "/public"));
 app.use(body.json());
-var port = process.env.port || 1331;
+var port = process.env.port || 3001;
 app.post('/cpu',function(req,res){
     console.log(req.body);
    // res.send(req.body);
@@ -122,14 +122,51 @@ app.post('/process',function(req,res){
 
 });
 app.post('/gpost',function(req,res){
-    console.log(req.body);
+   
+global.x=0;
+  /*  collection.update(
+   {username:"Bob"},
+   {$set:{'longitude': '58.3', 'latitude': '0.3'}},
+   { upsert: true}
+)*/
+
  MongoClient.connect(url, function(err, db) {
-     db.collection('GeneralConfig').insert(req.body,function(err, result) {
+
+db.collection('GeneralConfig').find({'servername':req.body.servername}).toArray(function(err, docs)
+{
+ assert.equal(err, null);
+//res.json(docs);
+global.x=docs.length;
+//x=1;
+//console.log("docs length "+docs.length);
+console.log("value of x inside "+ global.x );
+
+if(global.x==0)
+{
+    db.collection('GeneralConfig').insert(req.body,function(err, result) {
     assert.equal(err, null);
-    console.log("Inserted a document into the config collection.");
+    res.json("{'staus':'inserted successfully'}");
+    res.end();
      }
     )
- });
+}
+else
+{
+    res.json("{'staus':'already exists}");
+    res.end();
+}
+
+ })
+
+
+
+
+
+
+})
+
+
+
  
 
 });
