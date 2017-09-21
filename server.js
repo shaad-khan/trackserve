@@ -148,7 +148,7 @@ app.get('/disk',function(req,res){
     //var per=[];
     MongoClient.connect(url, function(err, db) {
 assert.equal(null, err);
-var cursor =db.collection('disk').find().toArray(function(err, docs)
+var cursor =db.collection('Disk').find().toArray(function(err, docs)
 {
  assert.equal(err, null);
 res.json(docs);
