@@ -100,12 +100,27 @@ app.get('/gconfig',function(req,res){
     //var per=[];
     MongoClient.connect(url, function(err, db) {
 assert.equal(null, err);
+if(req.param('servername'))
+{
 var cursor =db.collection('GeneralConfig').find({'servername':req.param('servername')}).toArray(function(err, docs)
 {
  assert.equal(err, null);
 res.json(docs);
 
 });
+}
+else
+{
+var cursor =db.collection('GeneralConfig').find().toArray(function(err, docs)
+
+
+{
+ assert.equal(err, null);
+res.json(docs);
+
+});
+
+}
     });
 });
 app.get('/webconfig',function(req,res){
