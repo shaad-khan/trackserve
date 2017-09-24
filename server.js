@@ -100,7 +100,7 @@ app.get('/gconfig',function(req,res){
     //var per=[];
     MongoClient.connect(url, function(err, db) {
 assert.equal(null, err);
-var cursor =db.collection('GeneralConfig').find({'servername':reqservername}).toArray(function(err, docs)
+var cursor =db.collection('GeneralConfig').find({'servername':req.param('servername')}).toArray(function(err, docs)
 {
  assert.equal(err, null);
 res.json(docs);
@@ -373,7 +373,7 @@ var ob={"status":true};
 var ob2={"status":false};
  MongoClient.connect(url, function(err, db) {
 
-db.collection('Webconfig').find({'servername':req.param('servername'),'domain':req.body.domain}).toArray(function(err, docs)
+db.collection('Webconfig').find({'servername':req.body.servername,'domain':req.body.domain}).toArray(function(err, docs)
 {
  assert.equal(err, null);
 //res.json(docs);
