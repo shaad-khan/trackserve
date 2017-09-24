@@ -96,7 +96,7 @@ res.json(docs);
 });
     });
 });
-app.get('/gconfig',function(req,res){
+app.get('/gconfig/:servername',function(req,res){
     //var per=[];
     MongoClient.connect(url, function(err, db) {
 assert.equal(null, err);
