@@ -287,11 +287,10 @@ app.post('/appservercheck',function(req,res){
 var ob={"status":true};
 var ob2={"status":false};
 
-
 global.x=0;
  MongoClient.connect(url, function(err, db) {
 
-/*db.collection('Appservercheck').find({'servername':req.body.servername}).toArray(function(err, docs)
+db.collection('Appservercheck').find({'servername':req.body.servername}).toArray(function(err, docs)
 {
  assert.equal(err, null);
 //res.json(docs);
@@ -301,14 +300,14 @@ global.x=docs.length;
 //console.log("value of x inside "+ global.x );
 
 if(global.x==0)
-{*/
+{
     db.collection('Appservercheck').insert(req.body,function(err, result) {
     assert.equal(err, null);
     res.json(ob);
     res.end();
      }
     )
-/*}
+}
 else
 {
     res.json(ob2);
@@ -331,7 +330,7 @@ collection.updateOne({
         db.close();
     }
 
-
+*/
 
 
 
@@ -339,7 +338,7 @@ collection.updateOne({
 
 
 
- */
+ 
 
 });
 });
