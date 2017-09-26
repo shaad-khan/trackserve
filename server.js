@@ -117,7 +117,7 @@ app.get('/appdelete/:servername',function(req,res){
 db.collection('Appservercheck').remove({'servername':req.param('servername')}),function(err, docs)
 {
  assert.equal(err, null);
-res.json(docs);
+res.json({"status":"ok"});
 
 };
     });
