@@ -289,7 +289,7 @@ var ob={"status":true};
 
 MongoClient.connect(url, function(err, db) {
 
-
+/*
 db.collection('Appservercheck').insert(req.body,function(err, result) {
     assert.equal(err, null);
     res.json(ob);
@@ -297,7 +297,23 @@ db.collection('Appservercheck').insert(req.body,function(err, result) {
      }
     )
 
-})
+})*/
+
+ var collection = db.collection('Appservercheck');
+ collection.updateOne({
+            "servername": req.body.servername
+        }, {
+            $set: {
+                "Data" :req.body.Data
+            }
+        }, function(err, results) {
+
+            console.log(results.result);
+        });
+ 
+        db.close();
+    }
+)
 
 
 
