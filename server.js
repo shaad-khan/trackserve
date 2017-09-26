@@ -303,7 +303,7 @@ if(global.x==0)
 {
     db.collection('Appservercheck').insert(req.body,function(err, result) {
     assert.equal(err, null);
-    res.json(ob);
+    res.json(req.body);
     res.end();
      }
     )
