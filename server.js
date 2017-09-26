@@ -287,9 +287,8 @@ app.post('/appservercheck',function(req,res){
 var ob={"status":true};
 MongoClient.connect(url, function(err, db) {
 
-var collection = db.collection('persons');
 
-collection('Appservercheck').insert(req.body,function(err, result) {
+db.collection('Appservercheck').insert(req.body,function(err, result) {
     assert.equal(err, null);
     res.json(ob);
     res.end();
