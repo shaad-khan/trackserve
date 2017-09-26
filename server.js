@@ -286,15 +286,12 @@ else
 app.post('/appservercheck',function(req,res){
 var ob={"status":true};
 MongoClient.connect(url, function(err, db) {
-var myquery = { 'servername': req.body.servername };
-var newvalues = {$set: req.body };
 
-db.collection('Appservercheck').update(myquery,{$set: req.body },{"multi" : true,  // update only one document 
-        "upsert" : true},function(err, result) {
+db.collection('Appservercheck').remove({"servername" : req.body.servername})
+db.collection('Appservercheck').insert(req.body,function(err, result) {
     assert.equal(err, null);
     res.json(ob);
     res.end();
-
      }
     )
 
