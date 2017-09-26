@@ -286,6 +286,7 @@ else
 app.post('/appservercheck',function(req,res){
 var ob={"status":true};
 var ob2={"status":false};
+global.x=0;
  MongoClient.connect(url, function(err, db) {
 
 db.collection('Appservercheck').find({'servername':req.body.servername}).toArray(function(err, docs)
