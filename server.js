@@ -287,13 +287,18 @@ app.post('/appservercheck',function(req,res){
 var ob={"status":true};
 MongoClient.connect(url, function(err, db) {
 
-db.collection('Appservercheck').remove({"servername" : req.body.servername})
+db.collection('Appservercheck').remove({"servername" : req.body.servername},function(err, result){
+
 db.collection('Appservercheck').insert(req.body,function(err, result) {
     assert.equal(err, null);
     res.json(ob);
     res.end();
      }
     )
+
+
+})
+
 
 })
 
