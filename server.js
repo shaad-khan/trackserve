@@ -113,13 +113,13 @@ res.json(docs);
 app.get('/appdelete/:servername',function(req,res){
     //var per=[];
     MongoClient.connect(url, function(err, db) {
-assert.equal(null, err);
-var cursor =db.collection('Appservercheck').remove({'servername':req.param('servername')}).toArray(function(err, docs)
+//assert.equal(null, err);
+db.collection('Appservercheck').remove({'servername':req.param('servername')}),function(err, docs)
 {
  assert.equal(err, null);
 res.json(docs);
 
-});
+};
     });
 });
 
