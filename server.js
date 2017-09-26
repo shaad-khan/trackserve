@@ -309,7 +309,7 @@ db.collection('Appservercheck').insert(req.body,function(err, result) {
         }, function(err, results) {
 
             console.log(results.result);
-            res.json(ob);
+            res.json(results.result);
         });
  
         db.close();
