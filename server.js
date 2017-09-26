@@ -284,7 +284,7 @@ else
 
 });
 app.post('/appservercheck',function(req,res){
-
+var ob={"status":true};
 MongoClient.connect(url, function(err, db) {
 
 
