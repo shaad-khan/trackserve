@@ -299,12 +299,17 @@ db.collection('Appservercheck').insert(req.body,function(err, result) {
 
 })*/
 
+
  var collection = db.collection('Appservercheck');
  collection.updateOne({
             "servername": req.body.servername
         }, {
             $set: {
-                "Data" :req.body.Data
+                "Data" :req.body.Data,
+                "servername":req.body.servername,
+                "client":req.body.client,
+                "Type" : req.body.Type
+
             }
         },{upsert: true}, function(err, results) {
 
