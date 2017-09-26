@@ -293,6 +293,7 @@ db.collection('Appservercheck').update(myquery,req.body,function(err, result) {
     assert.equal(err, null);
     res.json(ob);
     res.end();
+    
      }
     )
 
