@@ -109,6 +109,23 @@ res.json(docs);
 });
     });
 });
+/******************************************************************************* */
+app.get('/appdelete/:servername',function(req,res){
+    //var per=[];
+    MongoClient.connect(url, function(err, db) {
+assert.equal(null, err);
+var cursor =db.collection('Appservercheck').remove({'servername':req.param('servername')}).toArray(function(err, docs)
+{
+ assert.equal(err, null);
+res.json(docs);
+
+});
+    });
+});
+
+/************************************************************************************* */
+
+
 app.get('/gconfig/:servername',function(req,res){
     //var per=[];
     MongoClient.connect(url, function(err, db) {
@@ -285,11 +302,11 @@ else
 app.post('/appservercheck',function(req,res){
 var ob={"status":true};
 //var x=json.parse(req.body)
-res.json(req.body);
+//res.json(req.body);
 
 MongoClient.connect(url, function(err, db) {
 
-/*
+
 db.collection('Appservercheck').insert(req.body,function(err, result) {
     assert.equal(err, null);
     res.json(ob);
@@ -297,29 +314,7 @@ db.collection('Appservercheck').insert(req.body,function(err, result) {
      }
     )
 
-})*/
-
-
- var collection = db.collection('Appservercheck');
- collection.updateOne({
-            "servername": req.body.servername
-        }, {
-            $set: {
-                "Data" :req.body.Data,
-                "servername":req.body.servername,
-                "client":req.body.client,
-                "Type" : req.body.Type
-
-            }
-        },{upsert: true}, function(err, results) {
-
-            console.log(results.result);
-            res.json(results.result);
-        });
- 
-        db.close();
-    }
-)
+})
 
 
 
