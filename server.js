@@ -286,7 +286,8 @@ else
 app.post('/appservercheck',function(req,res){
 var ob={"status":true};
 
-res.json(json.parse(req.body))
+res.json(json.parse(req.body));
+
 /*MongoClient.connect(url, function(err, db) {
 
 
