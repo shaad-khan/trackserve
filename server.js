@@ -289,7 +289,8 @@ MongoClient.connect(url, function(err, db) {
 var myquery = { 'servername': req.body.servername };
 var newvalues = {$set: req.body };
 
-db.collection('Appservercheck').update(myquery,newvalues,function(err, result) {
+db.collection('Appservercheck').update(myquery,{$set: req.body },{"multi" : true,  // update only one document 
+        "upsert" : true},function(err, result) {
     assert.equal(err, null);
     res.json(ob);
     res.end();
