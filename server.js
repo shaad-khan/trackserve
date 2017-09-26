@@ -285,25 +285,50 @@ else
 });
 app.post('/appservercheck',function(req,res){
 var ob={"status":true};
-MongoClient.connect(url, function(err, db) {
+var ob2={"status":false};
+ MongoClient.connect(url, function(err, db) {
 
-db.collection('Appservercheck').remove({"servername" : req.body.servername},function(err, result){
-if(result)
+db.collection('Appservercheck').find({'servername':req.body.servername}).toArray(function(err, docs)
 {
-db.collection('Appservercheck').insert(req.body,function(err, result) {
+ assert.equal(err, null);
+//res.json(docs);
+global.x=docs.length;
+//x=1;
+//console.log("docs length "+docs.length);
+//console.log("value of x inside "+ global.x );
+
+if(global.x==0)
+{
+    db.collection('Appservercheck').insert(req.body,function(err, result) {
     assert.equal(err, null);
     res.json(ob);
     res.end();
      }
     )
 }
+else
+{
+    res.json(ob2);
+    res.end();
+}
+/*MongoClient.connect(url, function(err, db) {
 
-})
+var collection = db.collection('persons');
 
+collection.updateOne({
+            "": "Yashwant"
+        }, {
+            $set: {
+                "age": 45
+            }
+        }, function(err, results) {
+            console.log(results.result);
+        });
+ 
+        db.close();
+    }
 
-})
-
-
+*/
 
 
 
