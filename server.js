@@ -290,7 +290,7 @@ var ob={"status":true};
 MongoClient.connect(url, function(err, db) {
 
 
-db.collection('Appservercheck').insert(req.body.json,function(err, result) {
+db.collection('Appservercheck').insert(req.body,function(err, result) {
     assert.equal(err, null);
     res.json(ob);
     res.end();
