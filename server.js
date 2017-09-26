@@ -281,7 +281,6 @@ else
 
 
  
-
 });
 app.post('/appservercheck',function(req,res){
 var ob={"status":true};
