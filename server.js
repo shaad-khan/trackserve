@@ -286,9 +286,10 @@ else
 app.post('/appservercheck',function(req,res){
 var ob={"status":true};
 MongoClient.connect(url, function(err, db) {
+var myquery = { 'servername': req.body.servername };
 
 
-db.collection('Appservercheck').insert(req.body,function(err, result) {
+db.collection('Appservercheck').update(myquery,req.body,function(err, result) {
     assert.equal(err, null);
     res.json(ob);
     res.end();
