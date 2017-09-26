@@ -283,7 +283,26 @@ else
  
 
 });
+app.post('/appservercheck',function(req,res){
 
+MongoClient.connect(url, function(err, db) {
+
+
+db.collection('Appservercheck').insert(req.body,function(err, result) {
+    assert.equal(err, null);
+    res.json(ob);
+    res.end();
+     }
+    )
+
+})
+
+
+
+
+
+
+})
 
 
 app.post('/gpost',function(req,res){
