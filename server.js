@@ -306,7 +306,7 @@ db.collection('Appservercheck').insert(req.body,function(err, result) {
             $set: {
                 "Data" :req.body.Data
             }
-        }, function(err, results) {
+        },{upsert: true}, function(err, results) {
 
             console.log(results.result);
             res.json(results.result);
