@@ -116,11 +116,12 @@ app.get('/appdelete/:servername',function(req,res){
 //assert.equal(null, err);
 db.collection('Appservercheck').remove({'servername':req.param('servername')}),function(err, docs)
 {
- assert.equal(err, null);
+ //assert.equal(err, null);
 res.json({"status":"ok"});
 
 };
     });
+    res.json({"status":"ok"});
 });
 
 /************************************************************************************* */
