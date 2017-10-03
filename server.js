@@ -123,6 +123,19 @@ res.json({"status":"ok"});
     });
     res.json({"status":"ok"});
 });
+app.get('/sqldelete/:servername',function(req,res){
+    //var per=[];
+    MongoClient.connect(url, function(err, db) {
+//assert.equal(null, err);
+db.collection('SqlChecks').remove({'servername':req.param('servername')}),function(err, docs)
+{
+ //assert.equal(err, null);
+res.json({"status":"ok"});
+
+};
+    });
+    res.json({"status":"ok"});
+});
 
 /************************************************************************************* */
 
@@ -289,15 +302,7 @@ else
 
  })
 
-
-
-
-
-
 })
-
-
-
  
 });
 app.post('/appservercheck',function(req,res){
@@ -317,10 +322,65 @@ db.collection('Appservercheck').insert(req.body,function(err, result) {
 
 })
 
+})
+
+app.post('/gpost',function(req,res){
+   
+global.x=0;
+  /*  collection.update(
+   {username:"Bob"},
+   {$set:{'longitude': '58.3', 'latitude': '0.3'}},
+   { upsert: true}
+)*/
+var ob={"status":true};
+var ob2={"status":false};
+ MongoClient.connect(url, function(err, db) {
+
+db.collection('GeneralConfig').find({'servername':req.body.servername}).toArray(function(err, docs)
+{
+ assert.equal(err, null);
+//res.json(docs);
+global.x=docs.length;
+//x=1;
+//console.log("docs length "+docs.length);
+console.log("value of x inside "+ global.x );
+
+if(global.x==0)
+{
+    db.collection('GeneralConfig').insert(req.body,function(err, result) {
+    assert.equal(err, null);
+    res.json(ob);
+    res.end();
+     }
+    )
+}
+else
+{
+    res.json(ob2);
+    res.end();
+}
+
+ })
+
+})
+ 
+});
+app.post('/sqlcheck',function(req,res){
+var ob={"status":true};
+//var x=json.parse(req.body)
+//res.json(req.body);
+
+MongoClient.connect(url, function(err, db) {
 
 
+db.collection('SqlChecks').insert(req.body,function(err, result) {
+    assert.equal(err, null);
+    res.json(ob);
+    res.end();
+     }
+    )
 
-
+})
 
 })
 
@@ -363,17 +423,7 @@ else
 
  })
 
-
-
-
-
-
 })
-
-
-
- 
-
 });
 
 
@@ -523,10 +573,6 @@ else
 
 })
 
-
-
- 
-
 });
 app.post('/config2',function(req,res){
     console.log(req.body);
@@ -565,6 +611,7 @@ app.post('/coyote',function(req,res){
  
 
 });
+
 app.get('/coyote/info',function(req,res){
    // console.log(req.body);
     /*MongoClient.connect(url, function(err, db) {
