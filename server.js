@@ -109,6 +109,7 @@ res.json(docs);
 });
     });
 });
+
 /******************************************************************************* */
 app.get('/appdelete/:servername',function(req,res){
     //var per=[];
@@ -696,6 +697,34 @@ res.json(docs);
 
 
  });
+/*----------------------------------------------------------------------*/
+
+app.get('/appinfo/:servername',function(req,res){
+    //var per=[];
+    MongoClient.connect(url, function(err, db) {
+assert.equal(null, err);
+var cursor =db.collection('Appservercheck').find({'servername':req.param('servername')}).toArray(function(err, docs)
+{
+ assert.equal(err, null);
+res.json(docs);
+
+});
+    });
+});
+
+
+
+
+
+/*------------------------------------------------------------------*/
+
+
+
+
+
+
+
+
 app.listen(port);
 
 console.log("server runing on 2000");
