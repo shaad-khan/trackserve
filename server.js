@@ -754,6 +754,44 @@ app.post('/prcs',function(req,res){
  });
   res.end();
 });
+app.get('/diskdel/:servername',function(req,res){
+    //var per=[];
+    MongoClient.connect(url, function(err, db) {
+//assert.equal(null, err);
+db.collection('Disk').remove({'servername':req.param('servername')}),function(err, docs)
+{
+ //assert.equal(err, null);
+res.json({"status":"ok"});
+
+};
+    });
+    res.json({"status":"ok"});
+});
+
+app.post('/disk',function(req,res){
+    console.log(req.body);
+ MongoClient.connect(url, function(err, db) {
+     db.collection('prcs').insert(req.body,function(err, result) {
+    assert.equal(err, null);
+    console.log("Inserted a document into the config collection.");
+     }
+    )
+ });
+  res.end();
+});
+app.get('/disk/:servername',function(req,res){
+    //var per=[];
+    MongoClient.connect(url, function(err, db) {
+assert.equal(null, err);
+var cursor =db.collection('Disk').find({'servername':req.param('servername')}).toArray(function(err, docs)
+{
+ assert.equal(err, null);
+res.json(docs);
+
+});
+    });
+});
+
 
 
 /*------------------------------------------------------------------*/
