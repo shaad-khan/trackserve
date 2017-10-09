@@ -771,7 +771,7 @@ res.json({"status":"ok"});
 app.post('/disk',function(req,res){
     console.log(req.body);
  MongoClient.connect(url, function(err, db) {
-     db.collection('prcs').insert(req.body,function(err, result) {
+     db.collection('Disk').insert(req.body,function(err, result) {
     assert.equal(err, null);
     console.log("Inserted a document into the config collection.");
      }
