@@ -14,7 +14,7 @@ app.post('/cpu',function(req,res){
     console.log(req.body);
    // res.send(req.body);
  MongoClient.connect(url, function(err, db) {
-     db.collection('cpu').insert(req.body,function(err, result) {
+     db.collection('CPU').insert(req.body,function(err, result) {
     assert.equal(err, null);
     console.log("Inserted a document into the contactlists collection.");
      }
