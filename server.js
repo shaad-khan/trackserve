@@ -808,7 +808,7 @@ app.get('/cpu/:servername',function(req,res){
     //var per=[];
     MongoClient.connect(url, function(err, db) {
 assert.equal(null, err);
-var cursor =db.collection('cpu').find({'servername':req.param('servername')}).toArray(function(err, docs)
+var cursor =db.collection('cpu').find({'servername':req.param('servername')}).sort({_id:-1}).limit(1).toArray(function(err, docs)
 {
  assert.equal(err, null);
 res.json(docs);
