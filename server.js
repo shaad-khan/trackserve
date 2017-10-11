@@ -20,6 +20,7 @@ app.post('/cpu',function(req,res){
      }
     )
  });
+ res.json("{status:ok}");
 });
 app.get('/config',function(req,res){
     //var per=[];
