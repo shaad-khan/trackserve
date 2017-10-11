@@ -14,7 +14,7 @@ app.post('/cpu',function(req,res){
     console.log(req.body);
    // res.send(req.body);
  MongoClient.connect(url, function(err, db) {
-     db.collection('CPU').insert(req.body,function(err, result) {
+     db.collection('cpu').insert(req.body,function(err, result) {
     assert.equal(err, null);
     console.log("Inserted a document into the contactlists collection.");
      }
@@ -238,7 +238,7 @@ app.get('/cpu',function(req,res){
     //var per=[];
     MongoClient.connect(url, function(err, db) {
 assert.equal(null, err);
-var cursor =db.collection('CPU').find().toArray(function(err, docs)
+var cursor =db.collection('cpu').find().toArray(function(err, docs)
 {
  assert.equal(err, null);
 res.json(docs);
