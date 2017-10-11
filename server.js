@@ -791,7 +791,7 @@ res.json(docs);
 });
     });
 });
-app.get('/sqlcheck/:servername',function(req,res){
+app.get('/dbcheck/:servername',function(req,res){
     //var per=[];
     MongoClient.connect(url, function(err, db) {
 assert.equal(null, err);
