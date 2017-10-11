@@ -791,7 +791,18 @@ res.json(docs);
 });
     });
 });
+app.get('/sqlcheck/:servername',function(req,res){
+    //var per=[];
+    MongoClient.connect(url, function(err, db) {
+assert.equal(null, err);
+var cursor =db.collection('SqlChecks').find({'servername':req.param('servername')}).toArray(function(err, docs)
+{
+ assert.equal(err, null);
+res.json(docs);
 
+});
+    });
+});
 
 
 /*------------------------------------------------------------------*/
