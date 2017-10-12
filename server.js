@@ -816,7 +816,18 @@ res.json(docs);
 });
     });
 });
+app.get('/cpu/:servername/:limit',function(req,res){
+    //var per=[];
+    MongoClient.connect(url, function(err, db) {
+assert.equal(null, err);
+var cursor =db.collection('cpu').find({'servername':req.param('servername')}).sort({_id:-1}).limit(req.param('limit')).toArray(function(err, docs)
+{
+ assert.equal(err, null);
+res.json(docs);
 
+});
+    });
+});
 
 /*------------------------------------------------------------------*/
 
