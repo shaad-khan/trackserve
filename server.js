@@ -818,11 +818,11 @@ res.json(docs);
 });
 app.get('/cpu/:servername/:limit',function(req,res){
     //var per=[];
-    var x=req.params('limit');
+    var x=req.params.limit;
 console.log(x);
     MongoClient.connect(url, function(err, db) {
 assert.equal(null, err);
-var cursor =db.collection('cpu').find({'servername':req.params('servername')}).sort({_id:-1}).limit(x).toArray(function(err, docs)
+var cursor =db.collection('cpu').find({'servername':req.params.servername}).sort({_id:-1}).limit(x).toArray(function(err, docs)
 {
  assert.equal(err, null);
 res.json(docs);
