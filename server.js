@@ -869,10 +869,10 @@ var cursor =db.collection('SqlChecks').update({'servername':req.params.servernam
 {
  if (err) {
                 console.log('Error updating wine: ' + err);
-                res.send({'error':'An error has occurred'});
+                res.json({'error':'An error has occurred'+err});
             } else {
                 console.log('' + result + ' document(s) updated');
-                res.send(updata);
+                res.json(updata);
             }
         });
      });
