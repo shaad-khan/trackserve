@@ -835,7 +835,7 @@ app.put('/test2/:servername',function(req,res){
     //var per=[];
     var x=parseInt(req.params.servername);
 //console.log(x+"   "+req.params.servername);
-    var updata=req.body;
+    var updata=req.body.Data;
     MongoClient.connect(url, function(err, db) {
 assert.equal(null, err);
 var cursor =db.collection('test2').update({'servername':req.params.servername},{$set:{Data:updata}}, {safe:true},function(err, docs)
