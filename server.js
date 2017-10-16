@@ -838,7 +838,7 @@ app.put('/test2/:servername',function(req,res){
     var updata=req.body;
     MongoClient.connect(url, function(err, db) {
 assert.equal(null, err);
-var cursor =db.collection('test2').update({'servername':req.params.servername},{$set:{ updata }}, {safe:true},function(err, docs)
+var cursor =db.collection('test2').update({'servername':req.params.servername},{$set:{Data:updata}}, {safe:true},function(err, docs)
 {
  if (err) {
                 console.log('Error updating wine: ' + err);
