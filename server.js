@@ -836,22 +836,47 @@ app.put('/test2/:servername',function(req,res){
     var x=parseInt(req.params.servername);
 //console.log(x+"   "+req.params.servername);
     var updata=req.body.Data;
+    console.log(updata);
     MongoClient.connect(url, function(err, db) {
 assert.equal(null, err);
-var cursor =db.collection('test2').update({'servername':req.params.servername},{$set:{Data:updata}}, {safe:true},function(err, docs)
+var cursor =db.collection('test2').update({'servername':req.params.servername},{$set:{Data:updata}}, {safe:true},function(err, result)
 {
  if (err) {
                 console.log('Error updating wine: ' + err);
                 res.send({'error':'An error has occurred'});
             } else {
                 console.log('' + result + ' document(s) updated');
-                res.send(wine);
+                res.send(updata);
             }
         });
      });
 
 });
 
+
+
+app.get('/sqlupdate/:servername/:checktype/:domain',function(req,res){
+    //var per=[];
+    var x=parseInt(req.params.servername);
+    var type=req.params.checktype;
+    var domain=req.params.domain;
+//console.log(x+"   "+req.params.servername);
+    var updata=req.body.Data;
+    console.log(updata);
+    MongoClient.connect(url, function(err, db) {
+assert.equal(null, err);
+var cursor =db.collection('SqlChecks').update({'servername':req.params.servername,'Type':type,'Domain':domain},{$set:{Data:updata}}, {safe:true},function(err, result)
+{
+ if (err) {
+                console.log('Error updating wine: ' + err);
+                res.send({'error':'An error has occurred'});
+            } else {
+                console.log('' + result + ' document(s) updated');
+                res.send(updata);
+            }
+        });
+     });
+});
 /*------------------------------------------------------------------*/
 
 
