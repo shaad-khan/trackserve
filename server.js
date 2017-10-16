@@ -872,7 +872,7 @@ var cursor =db.collection('SqlChecks').update({'servername':req.params.servernam
                 res.json({'error':'An error has occurred'+err});
             } else {
                 console.log('' + result + ' document(s) updated');
-                res.json(updata);
+                res.json(result);
             }
         });
      });
