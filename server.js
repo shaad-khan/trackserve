@@ -831,6 +831,26 @@ res.json(docs);
 });
     });
 });
+app.put('/test2/:servername',function(req,res){
+    //var per=[];
+    var x=parseInt(req.params.servername);
+//console.log(x+"   "+req.params.servername);
+    var updata=req.body;
+    MongoClient.connect(url, function(err, db) {
+assert.equal(null, err);
+var cursor =db.collection('test2').update({'servername':req.params.servername},updata, {safe:true},function(err, docs)
+{
+ if (err) {
+                console.log('Error updating wine: ' + err);
+                res.send({'error':'An error has occurred'});
+            } else {
+                console.log('' + result + ' document(s) updated');
+                res.send(wine);
+            }
+        });
+     });
+
+});
 
 /*------------------------------------------------------------------*/
 
