@@ -855,7 +855,7 @@ var cursor =db.collection('test2').update({'servername':req.params.servername},{
 
 
 
-app.get('/sqlupdate/:servername/:checktype/:domain',function(req,res){
+app.put('/sqlupdate/:servername/:checktype/:domain',function(req,res){
     //var per=[];
     var x=parseInt(req.params.servername);
     var type=req.params.checktype;
